@@ -13,10 +13,10 @@ class CreatePlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('plan', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
 
             $table->float('price', 8, 2);
@@ -28,9 +28,10 @@ class CreatePlansTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('plan_features', function (Blueprint $table) {
+        Schema::create('plan_feature', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('plan_id');
+
+	        $table->foreignId('fk_plan_id')->constrained('plan');
 
             $table->string('name');
             $table->string('code');
@@ -43,9 +44,10 @@ class CreatePlansTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('plan_subscriptions', function (Blueprint $table) {
+        Schema::create('plan_subscription', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('plan_id');
+
+	        $table->foreignId('fk_plan_id')->constrained('plan');
 
             $table->integer('model_id');
             $table->string('model_type');
@@ -66,9 +68,10 @@ class CreatePlansTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('plan_subscription_usages', function (Blueprint $table) {
+        Schema::create('plan_subscription_usage', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subscription_id');
+
+	        $table->foreignId('fk_subscription_id')->constrained('subscription');
 
             $table->string('code');
             $table->float('used', 9, 2)->default(0);
@@ -76,7 +79,7 @@ class CreatePlansTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('stripe_customers', function (Blueprint $table) {
+        Schema::create('stripe_customer', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('model_id');
@@ -95,10 +98,10 @@ class CreatePlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plans');
-        Schema::dropIfExists('plan_features');
-        Schema::dropIfExists('plan_subscriptions');
-        Schema::dropIfExists('plan_subscription_usages');
-        Schema::dropIfExists('stripe_customers');
+        Schema::dropIfExists('plan');
+        Schema::dropIfExists('plan_feature');
+        Schema::dropIfExists('plan_subscription');
+        Schema::dropIfExists('plan_subscription_usage');
+        Schema::dropIfExists('stripe_customer');
     }
 }

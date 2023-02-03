@@ -6,11 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Creatydev\Plans\Exceptions\UnsupportedPaymentMethodException;
 
-class PlanSubscriptionModel extends Model
+class PlanSubscription extends Model
 {
-    protected $table = 'plan_subscriptions';
+    protected $table = 'plan_subscription';
     protected $guarded = [];
-    protected $fillable = ['plan_id', 'model_id', 'model_type', 'payment_method', 'is_paid', 'charging_price', 'charging_currency', 'is_recurring', 'recurring_each_days', 'starts_on', 'expires_on', 'cancelled_on'];
+    protected $fillable = ['fk_plan_id', 'model_id', 'model_type', 'payment_method', 'is_paid', 'charging_price', 'charging_currency', 'is_recurring', 'recurring_each_days', 'starts_on', 'expires_on', 'cancelled_on'];
     protected $dates = [
         'starts_on',
         'expires_on',
@@ -28,17 +28,17 @@ class PlanSubscriptionModel extends Model
 
     public function plan()
     {
-        return $this->belongsTo(config('plans.models.plan'), 'plan_id');
+        return $this->belongsTo(config('plans.models.plan'), 'fk_plan_id');
     }
 
     public function features()
     {
-        return $this->plan()->first()->features();
+        return $this->plan()->first()->Features();
     }
 
     public function usages()
     {
-        return $this->hasMany(config('plans.models.usage'), 'subscription_id');
+        return $this->hasMany(config('plans.models.usage'), 'fk_subscription_id');
     }
 
     public function scopePaid($query)

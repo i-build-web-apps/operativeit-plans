@@ -15,8 +15,8 @@ class RecurrencyTest extends TestCase
         parent::setUp();
 
         $this->user = factory(\Creatydev\Plans\Test\Models\User::class)->create();
-        $this->plan = factory(\Creatydev\Plans\Models\PlanModel::class)->create();
-        $this->newPlan = factory(\Creatydev\Plans\Models\PlanModel::class)->create();
+        $this->plan = factory(\Creatydev\Plans\Models\Plan::class)->create();
+        $this->newPlan = factory(\Creatydev\Plans\Models\Plan::class)->create();
 
         $this->initiateStripeAPI();
     }
@@ -37,7 +37,9 @@ class RecurrencyTest extends TestCase
         $this->assertFalse($this->user->hasActiveSubscription());
         $this->assertEquals($this->user->subscriptions()->count(), 1);
 
-        $this->assertNotNull($this->user->renewSubscription($this->getStripeTestToken()));
+		$stripeTestToken = $this->getStripeTestToken() ;
+		$renewSubscriptionResponse = $this->user->renewSubscription($stripeTestToken) ;
+        $this->assertNotNull($renewSubscriptionResponse);
         sleep(1);
 
         $this->assertTrue($this->user->hasActiveSubscription());

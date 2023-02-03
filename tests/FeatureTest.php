@@ -2,7 +2,7 @@
 
 namespace Creatydev\Plans\Test;
 
-use Creatydev\Plans\Models\PlanFeatureModel;
+use Creatydev\Plans\Models\PlanFeature;
 
 class FeatureTest extends TestCase
 {
@@ -14,7 +14,7 @@ class FeatureTest extends TestCase
         parent::setUp();
 
         $this->user = factory(\Creatydev\Plans\Test\Models\User::class)->create();
-        $this->plan = factory(\Creatydev\Plans\Models\PlanModel::class)->create();
+        $this->plan = factory(\Creatydev\Plans\Models\Plan::class)->create();
     }
 
     /**
@@ -25,20 +25,20 @@ class FeatureTest extends TestCase
         $subscription = $this->user->subscribeTo($this->plan, 30);
 
         $subscription->features()->saveMany([
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Build minutes',
                 'code' => 'build.minutes',
                 'description' => 'Build minutes used for CI/CD.',
                 'type' => 'limit',
                 'limit' => 2000,
             ]),
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Vault access',
                 'code' => 'vault.access',
                 'description' => 'Access to the precious vault.',
                 'type' => 'feature',
             ]),
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Users amount',
                 'code' => 'users.amount',
                 'description' => 'The maximum amount of users than can use the app at the same time.',
@@ -47,8 +47,8 @@ class FeatureTest extends TestCase
             ]),
         ]);
 
-        $this->assertEquals($this->plan->features()->limited()->count(), 2);
-        $this->assertEquals($this->plan->features()->feature()->count(), 1);
+        $this->assertEquals($this->plan->Features()->limited()->count(), 2);
+        $this->assertEquals($this->plan->Features()->feature()->count(), 1);
 
         $this->assertEquals($subscription->features()->count(), 3);
         $this->assertEquals($subscription->usages()->count(), 0);
@@ -88,20 +88,20 @@ class FeatureTest extends TestCase
         $subscription = $this->user->subscribeTo($this->plan, 30);
 
         $subscription->features()->saveMany([
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Build minutes',
                 'code' => 'build.minutes',
                 'description' => 'Build minutes used for CI/CD.',
                 'type' => 'limit',
                 'limit' => 2000,
             ]),
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Vault access',
                 'code' => 'vault.access',
                 'description' => 'Access to the precious vault.',
                 'type' => 'feature',
             ]),
-            new PlanFeatureModel([
+            new PlanFeature([
                 'name' => 'Users amount',
                 'code' => 'users.amount',
                 'description' => 'The maximum amount of users than can use the app at the same time.',
@@ -110,8 +110,8 @@ class FeatureTest extends TestCase
             ]),
         ]);
 
-        $this->assertEquals($this->plan->features()->limited()->count(), 2);
-        $this->assertEquals($this->plan->features()->feature()->count(), 1);
+        $this->assertEquals($this->plan->Features()->limited()->count(), 2);
+        $this->assertEquals($this->plan->Features()->feature()->count(), 1);
 
         $this->assertTrue($subscription->consumeFeature('build.minutes', 30));
         $this->assertEquals($subscription->usages()->where('code', 'build.minutes')->first()->used, 30);

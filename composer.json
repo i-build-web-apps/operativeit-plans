@@ -25,6 +25,7 @@
         "stripe/stripe-php": "^6.43.0"
     },
     "require-dev": {
+        "laravel/legacy-factories": "^1.0.4",
         "orchestra/testbench": "^v7.21.0",
         "phpunit/phpunit": "^6.2|^7.0|^9.5.21"
     },

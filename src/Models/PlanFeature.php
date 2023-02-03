@@ -4,18 +4,18 @@ namespace Creatydev\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PlanFeatureModel extends Model
+class PlanFeature extends Model
 {
-    protected $table = 'plan_features';
+    protected $table = 'plan_feature';
     protected $guarded = [];
-    protected $fillable = ['plan_id', 'name', 'code', 'description', 'type', 'limit', 'metadata'];
+    protected $fillable = ['fk_plan_id', 'name', 'code', 'description', 'type', 'limit', 'metadata'];
     protected $casts = [
         'metadata' => 'object',
     ];
 
     public function plan()
     {
-        return $this->belongsTo(config('plans.models.plan'), 'plan_id');
+        return $this->belongsTo(config('plans.models.plan'), 'fk_plan_id');
     }
 
     public function scopeCode($query, string $code)

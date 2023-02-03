@@ -4,13 +4,13 @@ namespace Creatydev\Plans\Test;
 
 use Stripe\Stripe;
 use Stripe\Token as StripeToken;
-use Creatydev\Plans\Models\PlanModel;
+use Creatydev\Plans\Models\Plan;
 use Creatydev\Plans\Test\Models\User;
-use Creatydev\Plans\Models\PlanFeatureModel;
+use Creatydev\Plans\Models\PlanFeature;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Creatydev\Plans\Models\StripeCustomerModel;
-use Creatydev\Plans\Models\PlanSubscriptionModel;
-use Creatydev\Plans\Models\PlanSubscriptionUsageModel;
+use Creatydev\Plans\Models\StripeCustomer;
+use Creatydev\Plans\Models\PlanSubscription;
+use Creatydev\Plans\Models\PlanSubscriptionUsage;
 
 abstract class TestCase extends Orchestra
 {
@@ -46,11 +46,11 @@ abstract class TestCase extends Orchestra
         ]);
         $app['config']->set('auth.providers.users.model', User::class);
         $app['config']->set('app.key', 'wslxrEFGWY6GfGhvN9L3wH3KSRJQQpBD');
-        $app['config']->set('plans.models.plan', PlanModel::class);
-        $app['config']->set('plans.models.feature', PlanFeatureModel::class);
-        $app['config']->set('plans.models.subscription', PlanSubscriptionModel::class);
-        $app['config']->set('plans.models.usage', PlanSubscriptionUsageModel::class);
-        $app['config']->set('plans.models.stripeCustomer', StripeCustomerModel::class);
+        $app['config']->set('plans.models.plan', Plan::class);
+        $app['config']->set('plans.models.feature', PlanFeature::class);
+        $app['config']->set('plans.models.subscription', PlanSubscription::class);
+        $app['config']->set('plans.models.usage', PlanSubscriptionUsage::class);
+        $app['config']->set('plans.models.stripeCustomer', StripeCustomer::class);
     }
 
     protected function resetDatabase()
@@ -60,10 +60,10 @@ abstract class TestCase extends Orchestra
 
     protected function initiateStripeAPI()
     {
-        return Stripe::setApiKey($_ENV['STRIPE_SECRET']);
+        return Stripe::setApiKey(config('plans.stripeTestToken'));
     }
 
-    protected function getStripeTestToken()
+    protected function getStripeTestToken(): ?int
     {
         $this->initiateStripeAPI();
 

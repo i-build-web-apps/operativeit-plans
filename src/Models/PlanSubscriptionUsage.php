@@ -4,15 +4,15 @@ namespace Creatydev\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PlanSubscriptionUsageModel extends Model
+class PlanSubscriptionUsage extends Model
 {
-    protected $table = 'plan_subscription_usages';
+    protected $table = 'plan_subscription_usage';
     protected $guarded = [];
-    protected $fillable = ['subscription_id', 'code', 'used'];
+    protected $fillable = ['fk_subscription_id', 'code', 'used'];
 
     public function subscription()
     {
-        return $this->belongsTo(config('plans.models.subscription'), 'subscription_id');
+        return $this->belongsTo(config('plans.models.subscription'), 'fk_subscription_id');
     }
 
     public function scopeCode($query, string $code)

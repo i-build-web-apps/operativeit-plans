@@ -15,8 +15,8 @@ class StripeTest extends TestCase
         parent::setUp();
 
         $this->user = factory(\Creatydev\Plans\Test\Models\User::class)->create();
-        $this->plan = factory(\Creatydev\Plans\Models\PlanModel::class)->create();
-        $this->newPlan = factory(\Creatydev\Plans\Models\PlanModel::class)->create();
+        $this->plan = factory(\Creatydev\Plans\Models\Plan::class)->create();
+        $this->newPlan = factory(\Creatydev\Plans\Models\Plan::class)->create();
 
         $this->initiateStripeAPI();
     }

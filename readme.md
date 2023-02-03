@@ -348,41 +348,45 @@ You can extend Plan models as well
 **note** `$table`, `$fillable`, `$cast`, `Relationships` will be inherit
 
 ## PlanModel
+
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanModel;
-class Plan extends PlanModel {
+use Creatydev\Plans\Models\Plan;
+class Plan extends Plan {
     //
 }
 ```
 
 ## PlanFeatureModel
+
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanFeatureModel;
-class PlanFeature extends PlanFeatureModel {
+use Creatydev\Plans\Models\PlanFeature;
+class PlanFeature extends PlanFeature {
     //
 }
 ```
 
 ## PlanSubscriptionModel
+
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanSubscriptionModel;
-class PlanSubscription extends PlanSubscriptionModel {
+use Creatydev\Plans\Models\PlanSubscription;
+class PlanSubscription extends PlanSubscription {
     //
 }
 ```
 
 ## PlanSubscriptionUsageModel
+
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanSubscriptionUsageModel;
-class PlanSubscriptionUsage extends PlanSubscriptionUsageModel {
+use Creatydev\Plans\Models\PlanSubscriptionUsage;
+class PlanSubscriptionUsage extends PlanSubscriptionUsage {
     //
 }
 ```

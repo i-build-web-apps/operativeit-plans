@@ -169,7 +169,7 @@ trait HasPlans
         }
 
         $subscription = $this->subscriptions()->save(new $subscriptionModel([
-            'plan_id' => $plan->id,
+            'fk_plan_id' => $plan->id,
             'starts_on' => Carbon::now()->subSeconds(1),
             'expires_on' => Carbon::now()->addDays($duration),
             'cancelled_on' => null,
@@ -223,7 +223,7 @@ trait HasPlans
         }
 
         $subscription = $this->subscriptions()->save(new $subscriptionModel([
-            'plan_id' => $plan->id,
+            'fk_plan_id' => $plan->id,
             'starts_on' => Carbon::now()->subSeconds(1),
             'expires_on' => $date,
             'cancelled_on' => null,
@@ -279,9 +279,9 @@ trait HasPlans
         $subscription = $this->extendCurrentSubscriptionWith($duration, $startFromNow, $isRecurring);
         $oldPlan = $activeSubscription->plan;
 
-        if ($subscription->plan_id != $newPlan->id) {
+        if ($subscription->fk_plan_id != $newPlan->id) {
             $subscription->update([
-                'plan_id' => $newPlan->id,
+                'fk_plan_id' => $newPlan->id,
             ]);
         }
 
@@ -323,9 +323,9 @@ trait HasPlans
             return false;
         }
 
-        if ($subscription->plan_id != $newPlan->id) {
+        if ($subscription->fk_plan_id != $newPlan->id) {
             $subscription->update([
-                'plan_id' => $newPlan->id,
+                'fk_plan_id' => $newPlan->id,
             ]);
         }
 
@@ -374,7 +374,7 @@ trait HasPlans
         $subscriptionModel = config('plans.models.subscription');
 
         $subscription = $this->subscriptions()->save(new $subscriptionModel([
-            'plan_id' => $activeSubscription->plan_id,
+            'fk_plan_id' => $activeSubscription->fk_plan_id,
             'starts_on' => Carbon::parse($activeSubscription->expires_on),
             'expires_on' => Carbon::parse($activeSubscription->expires_on)->addDays($duration),
             'cancelled_on' => null,
@@ -433,7 +433,7 @@ trait HasPlans
         $subscriptionModel = config('plans.models.subscription');
 
         $subscription = $this->subscriptions()->save(new $subscriptionModel([
-            'plan_id' => $activeSubscription->plan_id,
+            'fk_plan_id' => $activeSubscription->fk_plan_id,
             'starts_on' => Carbon::parse($activeSubscription->expires_on),
             'expires_on' => $date,
             'cancelled_on' => null,
