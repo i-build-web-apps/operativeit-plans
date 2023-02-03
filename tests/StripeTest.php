@@ -43,7 +43,7 @@ class StripeTest extends TestCase
 //    public function testChargeOnSubscribeTo()
 //    {
 //        $customer = $this->user->createStripeCustomer();
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getStripeTestToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getStripeTestToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertTrue($subscription->is_paid);
@@ -59,7 +59,7 @@ class StripeTest extends TestCase
 //    public function testChargeOnSubscribeToWithInvalidToken()
 //    {
 //        $customer = $this->user->createStripeCustomer();
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
@@ -105,7 +105,7 @@ class StripeTest extends TestCase
 //    public function testChargeOnSubscribeToWithDifferentPrice()
 //    {
 //        $customer = $this->user->createStripeCustomer();
-//        $subscription = $this->user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken($this->getStripeTestToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken($this->getStripeTestToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertTrue($subscription->is_paid);
@@ -121,7 +121,7 @@ class StripeTest extends TestCase
 //    public function testChargeOnSubscribeToWithDifferentPriceAndInvalidToken()
 //    {
 //        $customer = $this->user->createStripeCustomer();
-//        $subscription = $this->user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
@@ -168,7 +168,7 @@ class StripeTest extends TestCase
 //     */
 //    public function testChargeForLastDueSubscriptionWithStripe()
 //    {
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
@@ -193,7 +193,7 @@ class StripeTest extends TestCase
 //     */
 //    public function testChargeForLastDueSubscriptionWithInvalidStripeToken()
 //    {
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
@@ -213,19 +213,19 @@ class StripeTest extends TestCase
 //     */
 //    public function testSubscribeWhenHavingDueSubscription()
 //    {
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
 //        $this->assertEquals($this->user->subscriptions()->count(), 1);
 //
-//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeTo($this->plan, 53);
+//        $subscription = $this->user->withStripe()->withStripeToken($this->getInvalidStripeToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertFalse($subscription->is_paid);
 //        $this->assertEquals($this->user->subscriptions()->count(), 1);
 //
-//        $newSubscription = $this->user->withStripe()->withStripeToken($this->getStripeTestToken())->subscribeTo($this->plan, 53);
+//        $newSubscription = $this->user->withStripe()->withStripeToken($this->getStripeTestToken())->subscribeToPlan($this->plan, 53);
 //        sleep(1);
 //
 //        $this->assertTrue($newSubscription->is_paid);

@@ -35,8 +35,8 @@ class PlanTest extends TestCase
      */
     public function testSubscribeToWithInvalidDuration()
     {
-        $this->assertFalse($this->user->subscribeTo($this->plan, 0));
-        $this->assertFalse($this->user->subscribeTo($this->plan, -1));
+        $this->assertFalse($this->user->subscribeToPlan($this->plan, 0));
+        $this->assertFalse($this->user->subscribeToPlan($this->plan, -1));
     }
 
     /**
@@ -54,7 +54,7 @@ class PlanTest extends TestCase
      */
     public function testSubscribeTo()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertEquals($subscription->fk_plan_id, $this->plan->id);
@@ -125,7 +125,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeWithWrongDuration()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertFalse($this->user->upgradeCurrentPlanTo($this->newPlan, 0));
@@ -137,7 +137,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToWithInvalidDate()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertFalse($this->user->upgradeCurrentPlanToUntil($this->plan, Carbon::yesterday()));
@@ -150,7 +150,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToNow()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->upgradeCurrentPlanTo($this->newPlan, 30, true);
@@ -164,7 +164,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToAnotherCycle()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->upgradeCurrentPlanTo($this->newPlan, 30, false);
@@ -179,7 +179,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToNowWithCarbonInstance()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30), true);
@@ -194,7 +194,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToAnotherCycleWithCarbonInstance()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30), false);
@@ -210,7 +210,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToNowWithDateTimeString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30)->toDateTimeString(), true);
@@ -225,7 +225,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToAnotherCycleWithDateTimeString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30)->toDateTimeString(), false);
@@ -241,7 +241,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToNowWithDateString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30)->toDateString(), true);
@@ -256,7 +256,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToAnotherCycleWithDateString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->upgradeCurrentPlanToUntil($this->newPlan, Carbon::now()->addDays(30)->toDateString(), false);
@@ -272,7 +272,7 @@ class PlanTest extends TestCase
      */
     public function testExtendWithWrongDuration()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertFalse($this->user->extendCurrentSubscriptionWith(-1));
@@ -285,7 +285,7 @@ class PlanTest extends TestCase
      */
     public function testExtendNow()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->extendCurrentSubscriptionWith(30, true);
@@ -300,7 +300,7 @@ class PlanTest extends TestCase
      */
     public function testExtendToAnotherCycle()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->extendCurrentSubscriptionWith(30, false);
@@ -316,7 +316,7 @@ class PlanTest extends TestCase
      */
     public function testExtendNowWithCarbonInstance()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30), true);
@@ -331,7 +331,7 @@ class PlanTest extends TestCase
      */
     public function testExtendToAnotherCycleWithCarbonInstance()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30), false);
@@ -347,7 +347,7 @@ class PlanTest extends TestCase
      */
     public function testExtendNowWithDateTimeString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30)->toDateTimeString(), true);
@@ -362,7 +362,7 @@ class PlanTest extends TestCase
      */
     public function testExtendToAnotherCycleWithDateTimeString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30)->toDateTimeString(), false);
@@ -378,7 +378,7 @@ class PlanTest extends TestCase
      */
     public function testExtendNowWithDateString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30)->toDateString(), true);
@@ -393,7 +393,7 @@ class PlanTest extends TestCase
      */
     public function testExtendToAnotherCycleWithDateString()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->extendCurrentSubscriptionUntil(Carbon::now()->addDays(30)->toDateString(), false);
@@ -433,7 +433,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToFromUserNow()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->upgradeCurrentPlanTo($this->newPlan, 15, true);
@@ -448,7 +448,7 @@ class PlanTest extends TestCase
      */
     public function testUpgradeToFromUserToAnotherCycle()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->upgradeCurrentPlanTo($this->newPlan, 30, false);
@@ -476,7 +476,7 @@ class PlanTest extends TestCase
      */
     public function testExtendFromUserNow()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $subscription = $this->user->extendCurrentSubscriptionWith(15, true);
@@ -491,7 +491,7 @@ class PlanTest extends TestCase
      */
     public function testExtendFromUserToAnotherCycle()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->user->extendCurrentSubscriptionWith(15, false);
@@ -507,7 +507,7 @@ class PlanTest extends TestCase
      */
     public function testCancelSubscription()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertEquals($subscription->fk_plan_id, $this->plan->id);
@@ -528,7 +528,7 @@ class PlanTest extends TestCase
      */
     public function testCancelSubscriptionFromUser()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 15);
+        $subscription = $this->user->subscribeToPlan($this->plan, 15);
         sleep(1);
 
         $this->assertEquals($subscription->fk_plan_id, $this->plan->id);

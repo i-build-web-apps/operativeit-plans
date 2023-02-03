@@ -155,7 +155,7 @@ trait HasPlans
      * @param bool $isRecurring Wether the subscription should auto renew every $duration days.
      * @return PlanSubscription The PlanSubscription model instance.
      */
-    public function subscribeTo($plan, int $duration = 30, bool $isRecurring = true)
+    public function subscribeToPlan($plan, int $duration = 30, bool $isRecurring = true)
     {
         $subscriptionModel = config('plans.models.subscription');
 
@@ -265,7 +265,7 @@ trait HasPlans
     public function upgradeCurrentPlanTo($newPlan, int $duration = 30, bool $startFromNow = true, bool $isRecurring = true)
     {
         if (! $this->hasActiveSubscription()) {
-            return $this->subscribeTo($newPlan, $duration, $isRecurring);
+            return $this->subscribeToPlan($newPlan, $duration, $isRecurring);
         }
 
         if ($duration < 1) {
@@ -348,10 +348,10 @@ trait HasPlans
                 $lastActiveSubscription = $this->lastActiveSubscription();
                 $lastActiveSubscription->load(['plan']);
 
-                return $this->subscribeTo($lastActiveSubscription->plan, $duration, $isRecurring);
+                return $this->subscribeToPlan($lastActiveSubscription->plan, $duration, $isRecurring);
             }
 
-            return $this->subscribeTo(config('plans.models.plan')::first(), $duration, $isRecurring);
+            return $this->subscribeToPlan(config('plans.models.plan')::first(), $duration, $isRecurring);
         }
 
         if ($duration < 1) {
@@ -514,10 +514,10 @@ trait HasPlans
             }
 
 //            if ($lastActiveSubscription->payment_method == 'stripe') {
-//                return $this->withStripe()->withStripeToken($stripeToken)->subscribeTo($plan, $recurringEachDays);
+//                return $this->withStripe()->withStripeToken($stripeToken)->subscribeToPlan($plan, $recurringEachDays);
 //            }
         }
 
-        return $this->subscribeTo($plan, $recurringEachDays);
+        return $this->subscribeToPlan($plan, $recurringEachDays);
     }
 }

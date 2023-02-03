@@ -22,7 +22,7 @@ class FeatureTest extends TestCase
      */
     public function testConsumeFeature()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 30);
+        $subscription = $this->user->subscribeToPlan($this->plan, 30);
 
         $subscription->features()->saveMany([
             new PlanFeature([
@@ -85,7 +85,7 @@ class FeatureTest extends TestCase
      */
     public function testUnconsumeFeature()
     {
-        $subscription = $this->user->subscribeTo($this->plan, 30);
+        $subscription = $this->user->subscribeToPlan($this->plan, 30);
 
         $subscription->features()->saveMany([
             new PlanFeature([

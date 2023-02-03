@@ -112,7 +112,7 @@ $subscription->features()->feature()->get(); // Uncountable, permission-like fea
 # Subscribing to plans
 Your users can be subscribed to plans for a certain amount of days or until a certain date.
 ```php
-$subscription = $user->subscribeTo($plan, 30); // 30 days
+$subscription = $user->subscribeToPlan($plan, 30); // 30 days
 $subscription->remainingDays(); // 29 (29 days, 23 hours, ...)
 ```
 
@@ -120,7 +120,7 @@ By default, the plan is marked as `recurring`, so it's eligible to be extended a
 
 If you don't want a recurrent subscription, you can pass `false` as a third argument:
 ```php
-$subscription = $user->subscribeTo($plan, 30, false); // 30 days, non-recurrent
+$subscription = $user->subscribeToPlan($plan, 30, false); // 30 days, non-recurrent
 ```
 
 If you plan to subscribe your users until a certain date, you can pass strngs containing a date, a datetime or a Carbon instance.
@@ -134,7 +134,7 @@ $user->subscribeToUntil($plan, Carbon::create(2018, 12, 21, 16, 54, 11));
 $user->subscribeToUntil($plan, '2018-12-21', false); // no recurrency
 ```
 
-**Note: If the user is already subscribed, the `subscribeTo()` will return false. To avoid this, upgrade or extend the subscription.**
+**Note: If the user is already subscribed, the `subscribeToPlan()` will return false. To avoid this, upgrade or extend the subscription.**
 
 # Upgrading subscription
 
@@ -271,12 +271,12 @@ You want to charge your users from the moment their subscription starts, so you 
 # Subscribing with Stripe Charge
 To subscribe your users with a Stripe Token, you have to explicitly pass a Stripe Token:
 ```php
-$user->withStripe()->withStripeToken('tok_...')->subscribeTo($plan, 53); // 53 days
+$user->withStripe()->withStripeToken('tok_...')->subscribeToPlan($plan, 53); // 53 days
 ```
 
 By default, the charging amount are retrieved from the `plans` table. However, you can change the price mid-process, at your discretion:
 ```php
-$user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken('tok_...')->subscribeTo($plan, 30);
+$user->withStripe()->setChargingPriceTo(10, 'USD')->withStripeToken('tok_...')->subscribeToPlan($plan, 30);
 ```
 
 The charging price will be $10, no matter what the plan's price is, since we overrode the charging price.
