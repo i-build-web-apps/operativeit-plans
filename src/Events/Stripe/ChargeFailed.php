@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans\Events\Stripe;
+namespace IBuildWebApps\Plans\Events\Stripe;
 
 use Illuminate\Queue\SerializesModels;
 

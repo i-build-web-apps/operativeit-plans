@@ -13,16 +13,21 @@
     "homepage": "https://github.com/i-build-web-apps/operativeit-plans",
     "license": "MIT",
     "authors": [
-        {
-            "name": "Dukens Thelemaque",
-            "email": "dukensdev@gmail.com",
-            "homepage": "https://thelemaque-dukens.com",
-            "role": "Developer"
-        }
+      {
+        "name": "Dukens Thelemaque",
+        "email": "dukensdev@gmail.com",
+        "homepage": "https://thelemaque-dukens.com",
+        "role": "Developer"
+      },
+      {
+        "name": "Paul",
+        "email": "paul@ibuildwebapps.com",
+        "homepage": "https://ibuildwebapps.com",
+        "role": "Developer"
+      }
     ],
     "require": {
-        "laravel/framework": "^8.22.2|^9.19",
-        "stripe/stripe-php": "^6.43.0"
+        "laravel/framework": "^8.22.2|^9.19"
     },
     "require-dev": {
         "laravel/legacy-factories": "^1.0.4",
@@ -31,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Creatydev\\Plans\\": "src"
+            "IBuildWebApps\\Plans\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Creatydev\\Plans\\Test\\": "tests"
+            "IBuildWebApps\\Plans\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -47,7 +52,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Creatydev\\Plans\\PlansServiceProvider"
+                "IBuildWebApps\\Plans\\PlansServiceProvider"
             ]
         }
     },

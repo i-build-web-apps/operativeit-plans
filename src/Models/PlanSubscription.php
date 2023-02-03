@@ -1,10 +1,10 @@
 <?php
 
-namespace Creatydev\Plans\Models;
+namespace IBuildWebApps\Plans\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Creatydev\Plans\Exceptions\UnsupportedPaymentMethodException;
+use IBuildWebApps\Plans\Exceptions\UnsupportedPaymentMethodException;
 
 class PlanSubscription extends Model
 {
@@ -186,7 +186,7 @@ class PlanSubscription extends Model
 
         $remaining = (float) ($feature->isUnlimited()) ? -1 : $feature->limit - ($usage->used + $amount);
 
-        event(new \Creatydev\Plans\Events\FeatureConsumed($this, $feature, $amount, $remaining));
+        event(new \IBuildWebApps\Plans\Events\FeatureConsumed($this, $feature, $amount, $remaining));
 
         return $usage->update([
             'used' => (float) ($usage->used + $amount),
@@ -222,7 +222,7 @@ class PlanSubscription extends Model
         $used = (float) max($usage->used - $amount, 0);
         $remaining = (float) $feature->isUnlimited() ? -1 : $feature->limit - $used;
 
-        event(new \Creatydev\Plans\Events\FeatureUnconsumed($this, $feature, $amount, $remaining));
+        event(new \IBuildWebApps\Plans\Events\FeatureUnconsumed($this, $feature, $amount, $remaining));
 
         return $usage->update([
             'used' => $used,

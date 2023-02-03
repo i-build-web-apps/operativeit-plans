@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans\Events;
+namespace IBuildWebApps\Plans\Events;
 
 use Illuminate\Queue\SerializesModels;
 

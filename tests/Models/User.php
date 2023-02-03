@@ -1,8 +1,8 @@
 <?php
 
-namespace Creatydev\Plans\Test\Models;
+namespace IBuildWebApps\Plans\Test\Models;
 
-use Creatydev\Plans\Traits\HasPlans;
+use IBuildWebApps\Plans\Traits\HasPlans;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable

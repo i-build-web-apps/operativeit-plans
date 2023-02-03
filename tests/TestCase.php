@@ -1,14 +1,14 @@
 <?php
 
-namespace Creatydev\Plans\Test;
+namespace IBuildWebApps\Plans\Test;
 
-use Creatydev\Plans\Models\Plan;
-use Creatydev\Plans\Test\Models\User;
-use Creatydev\Plans\Models\PlanFeature;
+use IBuildWebApps\Plans\Models\Plan;
+use IBuildWebApps\Plans\Test\Models\User;
+use IBuildWebApps\Plans\Models\PlanFeature;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Creatydev\Plans\Models\StripeCustomer;
-use Creatydev\Plans\Models\PlanSubscription;
-use Creatydev\Plans\Models\PlanSubscriptionUsage;
+use IBuildWebApps\Plans\Models\StripeCustomer;
+use IBuildWebApps\Plans\Models\PlanSubscription;
+use IBuildWebApps\Plans\Models\PlanSubscriptionUsage;
 
 abstract class TestCase extends Orchestra
 {
@@ -30,7 +30,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Creatydev\Plans\PlansServiceProvider::class,
+            \IBuildWebApps\Plans\PlansServiceProvider::class,
         ];
     }
 

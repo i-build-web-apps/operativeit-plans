@@ -8,12 +8,12 @@ return [
 
     'models' => [
 
-	    'plan' => \Creatydev\Plans\Models\Plan::class,
-	    'subscription' => \Creatydev\Plans\Models\PlanSubscription::class,
-	    'feature' => \Creatydev\Plans\Models\PlanFeature::class,
-	    'usage' => \Creatydev\Plans\Models\PlanSubscriptionUsage::class,
+	    'plan' => \IBuildWebApps\Plans\Models\Plan::class,
+	    'subscription' => \IBuildWebApps\Plans\Models\PlanSubscription::class,
+	    'feature' => \IBuildWebApps\Plans\Models\PlanFeature::class,
+	    'usage' => \IBuildWebApps\Plans\Models\PlanSubscriptionUsage::class,
 
-	    'stripeCustomer' => \Creatydev\Plans\Models\StripeCustomer::class,
+	    'stripeCustomer' => \IBuildWebApps\Plans\Models\StripeCustomer::class,
 
     ],
     /*

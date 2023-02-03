@@ -12,7 +12,7 @@
          stopOnError="true"
          >
     <testsuites>
-        <testsuite name="Creatydev Test Suite">
+        <testsuite name="IBuildWebApps Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

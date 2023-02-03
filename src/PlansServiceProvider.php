@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans;
+namespace IBuildWebApps\Plans;
 
 use Illuminate\Support\ServiceProvider;
 

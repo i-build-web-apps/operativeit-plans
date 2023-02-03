@@ -1,8 +1,8 @@
 <?php
 
-namespace Creatydev\Plans\Test;
+namespace IBuildWebApps\Plans\Test;
 
-use Creatydev\Plans\Models\PlanFeature;
+use IBuildWebApps\Plans\Models\PlanFeature;
 
 class FeatureTest extends TestCase
 {
@@ -13,8 +13,8 @@ class FeatureTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(\Creatydev\Plans\Test\Models\User::class)->create();
-        $this->plan = factory(\Creatydev\Plans\Models\Plan::class)->create();
+        $this->user = factory(\IBuildWebApps\Plans\Test\Models\User::class)->create();
+        $this->plan = factory(\IBuildWebApps\Plans\Models\Plan::class)->create();
     }
 
     /**

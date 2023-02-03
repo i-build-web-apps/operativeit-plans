@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans\Exceptions;
+namespace IBuildWebApps\Plans\Exceptions;
 
 use Exception;
 

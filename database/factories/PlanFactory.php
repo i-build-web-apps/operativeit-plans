@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(\Creatydev\Plans\Models\Plan::class, function () {
+$factory->define(\IBuildWebApps\Plans\Models\Plan::class, function () {
     return [
         'name' => 'Testing Plan '.Str::random(7),
         'description' => 'This is a testing plan.',

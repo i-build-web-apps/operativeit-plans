@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans\Test;
+namespace IBuildWebApps\Plans\Test;
 
 use Carbon\Carbon;
 
@@ -14,9 +14,9 @@ class RecurrencyTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(\Creatydev\Plans\Test\Models\User::class)->create();
-        $this->plan = factory(\Creatydev\Plans\Models\Plan::class)->create();
-        $this->newPlan = factory(\Creatydev\Plans\Models\Plan::class)->create();
+        $this->user = factory(\IBuildWebApps\Plans\Test\Models\User::class)->create();
+        $this->plan = factory(\IBuildWebApps\Plans\Models\Plan::class)->create();
+        $this->newPlan = factory(\IBuildWebApps\Plans\Models\Plan::class)->create();
 
   //      $this->initiateStripeAPI();
     }

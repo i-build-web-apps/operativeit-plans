@@ -1,8 +1,8 @@
 <?php
 
-namespace Creatydev\Plans\Test;
+namespace IBuildWebApps\Plans\Test;
 
-use Creatydev\Plans\Helpers\StripeHelper;
+use IBuildWebApps\Plans\Helpers\StripeHelper;
 
 class StripeHelperTest extends TestCase
 {

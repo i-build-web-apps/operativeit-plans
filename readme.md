@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/Creatydev/plans.svg?branch=master)](https://travis-ci.org/Creatydev/plans)
-[![codecov](https://codecov.io/gh/Creatydev/plans/branch/master/graph/badge.svg)](https://codecov.io/gh/Creatydev/plans/branch/master)
+[![Build Status](https://travis-ci.org/IBuildWebApps/plans.svg?branch=master)](https://travis-ci.org/IBuildWebApps/plans)
+[![codecov](https://codecov.io/gh/IBuildWebApps/plans/branch/master/graph/badge.svg)](https://codecov.io/gh/IBuildWebApps/plans/branch/master)
 [![StyleCI](https://github.styleci.io/repos/138162161/shield?branch=master)](https://github.styleci.io/repos/138162161)
-[![Latest Stable Version](https://poser.pugx.org/Creatydev/plans/v/stable)](https://packagist.org/packages/Creatydev/plans)
-[![Total Downloads](https://poser.pugx.org/Creatydev/plans/downloads)](https://packagist.org/packages/Creatydev/plans)
-[![Monthly Downloads](https://poser.pugx.org/Creatydev/plans/d/monthly)](https://packagist.org/packages/Creatydev/plans)
-[![License](https://poser.pugx.org/Creatydev/plans/license)](https://packagist.org/packages/Creatydev/plans)
+[![Latest Stable Version](https://poser.pugx.org/IBuildWebApps/plans/v/stable)](https://packagist.org/packages/IBuildWebApps/plans)
+[![Total Downloads](https://poser.pugx.org/IBuildWebApps/plans/downloads)](https://packagist.org/packages/IBuildWebApps/plans)
+[![Monthly Downloads](https://poser.pugx.org/IBuildWebApps/plans/d/monthly)](https://packagist.org/packages/IBuildWebApps/plans)
+[![License](https://poser.pugx.org/IBuildWebApps/plans/license)](https://packagist.org/packages/IBuildWebApps/plans)
 
 [![PayPal](https://img.shields.io/badge/PayPal-donate-blue.svg)](https://paypal.me/)
 
@@ -25,12 +25,12 @@ $ composer require creatydev/plans
 
 If your Laravel version does not support package discovery, add this line in the `providers` array in your `config/app.php` file:
 ```php
-Creatydev\Plans\PlansServiceProvider::class,
+IBuildWebApps\Plans\PlansServiceProvider::class,
 ```
 
 Publish the config file & migration files:
 ```bash
-$ php artisan vendor:publish --provider=Creatydev\Plans\PlansServiceProvider
+$ php artisan vendor:publish --provider=IBuildWebApps\Plans\PlansServiceProvider
 ```
 
 Migrate the database:
@@ -40,7 +40,7 @@ $ php artisan migrate
 
 Add the `HasPlans` trait to your Eloquent model:
 ```php
-use Creatydev\Plans\Traits\HasPlans;
+use IBuildWebApps\Plans\Traits\HasPlans;
 
 class User extends Model {
     use HasPlans;
@@ -49,7 +49,7 @@ class User extends Model {
 ```
 
 # Creating plans
-The basic unit of the subscription-like system is a plan. You can create it using `Creatydev\Plans\Models\PlanModel` or your model, if you have implemented your own.
+The basic unit of the subscription-like system is a plan. You can create it using `IBuildWebApps\Plans\Models\PlanModel` or your model, if you have implemented your own.
 
 ```php
 $plan = PlanModel::create([
@@ -71,7 +71,7 @@ Marking a feature type can be done using:
 
 **Note: For unlimited feature, the `limit` field will be set to any negative value.**
 
-To attach features to your plan, you can use the relationship `features()` and pass as many `Creatydev\Plans\Models\PlanFeatureModel`instances as you need:
+To attach features to your plan, you can use the relationship `features()` and pass as many `IBuildWebApps\Plans\Models\PlanFeatureModel`instances as you need:
 ```php
 $plan->features()->saveMany([
     new PlanFeatureModel([
@@ -308,7 +308,7 @@ If you use the integrated Stripe Charge feature, you will have to pass a Stripe 
 $user->renewSubscription('tok...');
 ```
 
-As always, if the payment was processed, it will fire the `Creatydev\Plans\Stripe\ChargeSuccessful` event, or if the payment failed, it will fire `Creatydev\Plans\Stripe\ChargeFailed` event.
+As always, if the payment was processed, it will fire the `IBuildWebApps\Plans\Stripe\ChargeSuccessful` event, or if the payment failed, it will fire `IBuildWebApps\Plans\Stripe\ChargeFailed` event.
 
 # Due subscriptions
 Subscriptions that are not using the local Stripe Charge feature will never be marked as `Due` since all of them are paid, by default.
@@ -339,7 +339,7 @@ To do so, `chargeForLastDueSubscription()` will help you charge the user for the
 $user->withStripe()->withStripeToken('tok_...')->chargeForLastDueSubscription();
 ```
 
-For this method, `\Creatydev\Plans\Events\Stripe\DueSubscriptionChargeSuccess` and `\Creatydev\Plans\Events\Stripe\DueSubscriptionChargeFailed` are thrown on succesful charge or failed charge.
+For this method, `\IBuildWebApps\Plans\Events\Stripe\DueSubscriptionChargeSuccess` and `\IBuildWebApps\Plans\Events\Stripe\DueSubscriptionChargeFailed` are thrown on succesful charge or failed charge.
 
 # Model Extends
 
@@ -352,7 +352,7 @@ You can extend Plan models as well
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\Plan;
+use IBuildWebApps\Plans\Models\Plan;
 class Plan extends Plan {
     //
 }
@@ -363,7 +363,7 @@ class Plan extends Plan {
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanFeature;
+use IBuildWebApps\Plans\Models\PlanFeature;
 class PlanFeature extends PlanFeature {
     //
 }
@@ -374,7 +374,7 @@ class PlanFeature extends PlanFeature {
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanSubscription;
+use IBuildWebApps\Plans\Models\PlanSubscription;
 class PlanSubscription extends PlanSubscription {
     //
 }
@@ -385,7 +385,7 @@ class PlanSubscription extends PlanSubscription {
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\PlanSubscriptionUsage;
+use IBuildWebApps\Plans\Models\PlanSubscriptionUsage;
 class PlanSubscriptionUsage extends PlanSubscriptionUsage {
     //
 }
@@ -395,7 +395,7 @@ class PlanSubscriptionUsage extends PlanSubscriptionUsage {
 ```php
 <?php
 namespace App\Models;
-use Creatydev\Plans\Models\StripteCustomerModel;
+use IBuildWebApps\Plans\Models\StripteCustomerModel;
 class StripeCustomer extends StripteCustomerModel {
     //
 }
@@ -411,39 +411,39 @@ All you have to do is to implement the following Events in your `EventServicePro
 ```php
 $listen = [
     ...
-    \Creatydev\Plans\Events\CancelSubscription::class => [
+    \IBuildWebApps\Plans\Events\CancelSubscription::class => [
         // $event->model = The model that cancelled the subscription.
         // $event->subscription = The subscription that was cancelled.
     ],
-    \Creatydev\Plans\Events\NewSubscription::class => [
+    \IBuildWebApps\Plans\Events\NewSubscription::class => [
         // $event->model = The model that was subscribed.
         // $event->subscription = The subscription that was created.
     ],
-     \Creatydev\Plans\Events\NewSubscriptionUntil::class => [
+     \IBuildWebApps\Plans\Events\NewSubscriptionUntil::class => [
         // $event->model = The model that was subscribed.
         // $event->subscription = The subscription that was created.
     ],
-    \Creatydev\Plans\Events\ExtendSubscription::class => [
+    \IBuildWebApps\Plans\Events\ExtendSubscription::class => [
         // $event->model = The model that extended the subscription.
         // $event->subscription = The subscription that was extended.
         // $event->startFromNow = If the subscription is exteded now or is created a new subscription, in the future.
         // $event->newSubscription = If the startFromNow is false, here will be sent the new subscription that starts after the current one ends.
     ],
-    \Creatydev\Plans\Events\ExtendSubscriptionUntil::class => [
+    \IBuildWebApps\Plans\Events\ExtendSubscriptionUntil::class => [
         // $event->model = The model that extended the subscription.
         // $event->subscription = The subscription that was extended.
         // $event->expiresOn = The Carbon instance of the date when the subscription will expire.
         // $event->startFromNow = If the subscription is exteded now or is created a new subscription, in the future.
         // $event->newSubscription = If the startFromNow is false, here will be sent the new subscription that starts after the current one ends.
     ],
-    \Creatydev\Plans\Events\UpgradeSubscription::class => [
+    \IBuildWebApps\Plans\Events\UpgradeSubscription::class => [
         // $event->model = The model that upgraded the subscription.
         // $event->subscription = The current subscription.
         // $event->startFromNow = If the subscription is upgraded now or is created a new subscription, in the future.
         // $event->oldPlan = Here lies the current (which is now old) plan.
         // $event->newPlan = Here lies the new plan. If it's the same plan, it will match with the $event->oldPlan
     ],
-    \Creatydev\Plans\Events\UpgradeSubscriptionUntil::class => [
+    \IBuildWebApps\Plans\Events\UpgradeSubscriptionUntil::class => [
         // $event->model = The model that upgraded the subscription.
         // $event->subscription = The current subscription.
         // $event->expiresOn = The Carbon instance of the date when the subscription will expire.
@@ -451,34 +451,34 @@ $listen = [
         // $event->oldPlan = Here lies the current (which is now old) plan.
         // $event->newPlan = Here lies the new plan. If it's the same plan, it will match with the $event->oldPlan
     ],
-    \Creatydev\Plans\Events\FeatureConsumed::class => [
+    \IBuildWebApps\Plans\Events\FeatureConsumed::class => [
         // $event->subscription = The current subscription.
         // $event->feature = The feature that was used.
         // $event->used = The amount used.
         // $event->remaining = The total amount remaining. If the feature is unlimited, will return -1
     ],
-     \Creatydev\Plans\Events\FeatureUnconsumed::class => [
+     \IBuildWebApps\Plans\Events\FeatureUnconsumed::class => [
         // $event->subscription = The current subscription.
         // $event->feature = The feature that was used.
         // $event->used = The amount reverted.
         // $event->remaining = The total amount remaining. If the feature is unlimited, will return -1
     ],
-    \Creatydev\Plans\Events\Stripe\ChargeFailed::class => [
+    \IBuildWebApps\Plans\Events\Stripe\ChargeFailed::class => [
         // $event->model = The model for which the payment failed.
         // $event->subscription = The subscription.
         // $event->exception = The exception thrown by the Stripe API wrapper.
     ],
-    \Creatydev\Plans\Events\Stripe\ChargeSuccessful::class => [
+    \IBuildWebApps\Plans\Events\Stripe\ChargeSuccessful::class => [
         // $event->model = The model for which the payment succeded.
         // $event->subscription = The subscription which was updated as paid.
         // $event->stripeCharge = The response coming from the Stripe API wrapper.
     ],
-    \Creatydev\Plans\Events\Stripe\DueSubscriptionChargeFailed::class => [
+    \IBuildWebApps\Plans\Events\Stripe\DueSubscriptionChargeFailed::class => [
         // $event->model = The model for which the payment failed.
         // $event->subscription = The due subscription that cannot be paid.
         // $event->exception = The exception thrown by the Stripe API wrapper.
     ],
-    \Creatydev\Plans\Events\Stripe\DueSubscriptionChargeSuccess::class => [
+    \IBuildWebApps\Plans\Events\Stripe\DueSubscriptionChargeSuccess::class => [
         // $event->model = The model for which the payment succeded.
         // $event->subscription = The due subscription that was paid.
         // $event->stripeCharge = The response coming from the Stripe API wrapper.
@@ -489,9 +489,9 @@ $listen = [
 ## Authors
 
 * **Georgescu Alexandru** - *Initial work* .
-* **Dukens Thelemaque** - *Laravel 5.8 - 6.2 Support* - [Creatydev](https://github.com/whtht)
+* **Dukens Thelemaque** - *Laravel 5.8 - 6.2 Support* - [IBuildWebApps](https://github.com/whtht)
 
-See also the list of [contributors](https://github.com/Creatydev/plans/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/IBuildWebApps/plans/graphs/contributors) who participated in this project.
 
 ## License
 

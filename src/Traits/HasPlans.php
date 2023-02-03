@@ -1,12 +1,11 @@
 <?php
 
-namespace Creatydev\Plans\Traits;
+namespace IBuildWebApps\Plans\Traits;
 
 use Carbon\Carbon;
 
 trait HasPlans
 {
-    use CanPayWithStripe;
 
     /**
      * Get Subscriptions relatinship.
@@ -189,13 +188,13 @@ trait HasPlans
                     'is_paid' => true,
                 ]);
 
-                event(new \Creatydev\Plans\Events\Stripe\ChargeSuccessful($this, $subscription, $stripeCharge));
+                event(new \IBuildWebApps\Plans\Events\Stripe\ChargeSuccessful($this, $subscription, $stripeCharge));
             } catch (\Exception $exception) {
-                event(new \Creatydev\Plans\Events\Stripe\ChargeFailed($this, $subscription, $exception));
+                event(new \IBuildWebApps\Plans\Events\Stripe\ChargeFailed($this, $subscription, $exception));
             }
         }
 
-        event(new \Creatydev\Plans\Events\NewSubscription($this, $subscription));
+        event(new \IBuildWebApps\Plans\Events\NewSubscription($this, $subscription));
 
         return $subscription;
     }
@@ -243,13 +242,13 @@ trait HasPlans
                     'is_paid' => true,
                 ]);
 
-                event(new \Creatydev\Plans\Events\Stripe\ChargeSuccessful($this, $subscription, $stripeCharge));
+                event(new \IBuildWebApps\Plans\Events\Stripe\ChargeSuccessful($this, $subscription, $stripeCharge));
             } catch (\Exception $exception) {
-                event(new \Creatydev\Plans\Events\Stripe\ChargeFailed($this, $subscription, $exception));
+                event(new \IBuildWebApps\Plans\Events\Stripe\ChargeFailed($this, $subscription, $exception));
             }
         }
 
-        event(new \Creatydev\Plans\Events\NewSubscriptionUntil($this, $subscription, $date));
+        event(new \IBuildWebApps\Plans\Events\NewSubscriptionUntil($this, $subscription, $date));
 
         return $subscription;
     }
@@ -285,7 +284,7 @@ trait HasPlans
             ]);
         }
 
-        event(new \Creatydev\Plans\Events\UpgradeSubscription($this, $subscription, $startFromNow, $oldPlan, $newPlan));
+        event(new \IBuildWebApps\Plans\Events\UpgradeSubscription($this, $subscription, $startFromNow, $oldPlan, $newPlan));
 
         return $subscription;
     }
@@ -329,7 +328,7 @@ trait HasPlans
             ]);
         }
 
-        event(new \Creatydev\Plans\Events\UpgradeSubscriptionUntil($this, $subscription, $date, $startFromNow, $oldPlan, $newPlan));
+        event(new \IBuildWebApps\Plans\Events\UpgradeSubscriptionUntil($this, $subscription, $date, $startFromNow, $oldPlan, $newPlan));
 
         return $subscription;
     }
@@ -366,7 +365,7 @@ trait HasPlans
                 'expires_on' => Carbon::parse($activeSubscription->expires_on)->addDays($duration),
             ]);
 
-            event(new \Creatydev\Plans\Events\ExtendSubscription($this, $activeSubscription, $startFromNow, null));
+            event(new \IBuildWebApps\Plans\Events\ExtendSubscription($this, $activeSubscription, $startFromNow, null));
 
             return $activeSubscription;
         }
@@ -383,7 +382,7 @@ trait HasPlans
             'recurring_each_days' => $duration,
         ]));
 
-        event(new \Creatydev\Plans\Events\ExtendSubscription($this, $activeSubscription, $startFromNow, $subscription));
+        event(new \IBuildWebApps\Plans\Events\ExtendSubscription($this, $activeSubscription, $startFromNow, $subscription));
 
         return $subscription;
     }
@@ -421,7 +420,7 @@ trait HasPlans
                 'expires_on' => $date,
             ]);
 
-            event(new \Creatydev\Plans\Events\ExtendSubscriptionUntil($this, $activeSubscription, $date, $startFromNow, null));
+            event(new \IBuildWebApps\Plans\Events\ExtendSubscriptionUntil($this, $activeSubscription, $date, $startFromNow, null));
 
             return $activeSubscription;
         }
@@ -442,7 +441,7 @@ trait HasPlans
             'recurring_each_days' => Carbon::now()->subSeconds(1)->diffInDays($date),
         ]));
 
-        event(new \Creatydev\Plans\Events\ExtendSubscriptionUntil($this, $activeSubscription, $date, $startFromNow, $subscription));
+        event(new \IBuildWebApps\Plans\Events\ExtendSubscriptionUntil($this, $activeSubscription, $date, $startFromNow, $subscription));
 
         return $subscription;
     }
@@ -469,7 +468,7 @@ trait HasPlans
             'is_recurring' => false,
         ]);
 
-        event(new \Creatydev\Plans\Events\CancelSubscription($this, $activeSubscription));
+        event(new \IBuildWebApps\Plans\Events\CancelSubscription($this, $activeSubscription));
 
         return $activeSubscription;
     }

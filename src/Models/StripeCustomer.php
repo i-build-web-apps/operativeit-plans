@@ -1,6 +1,6 @@
 <?php
 
-namespace Creatydev\Plans\Models;
+namespace IBuildWebApps\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
