@@ -1,5 +1,5 @@
 {
-    "name": "creatydev/plans",
+    "name": "i-build-web-apps/operativeit-plans",
     "description": "Laravel Plans is a package for SaaS apps that need management over plans, features, subscriptions, events for plans or limited, countable features.",
     "keywords": [
         "eloquent",
@@ -10,7 +10,7 @@
         "model",
         "saas"
     ],
-    "homepage": "https://github.com/creatydev/plans",
+    "homepage": "https://github.com/i-build-web-apps/operativeit-plans",
     "license": "MIT",
     "authors": [
         {
@@ -21,13 +21,12 @@
         }
     ],
     "require": {
-        "laravel/framework": "~5.8.0|~6.0|~6.2.0|^8.22.2|^9.19",
+        "laravel/framework": "^8.22.2|^9.19",
         "stripe/stripe-php": "^6.43.0"
     },
     "require-dev": {
-        "orchestra/database": "~3.7.0|~3.8.0|~4.0.0",
-        "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
-        "phpunit/phpunit": "^6.2|^7.0"
+        "orchestra/testbench": "^v7.21.0",
+        "phpunit/phpunit": "^6.2|^7.0|^9.5.21"
     },
     "autoload": {
         "psr-4": {
