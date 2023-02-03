@@ -62,7 +62,7 @@ trait HasPlans
      *
      * @return null|PlanSubscriptionModel Either null or the last subscription.
      */
-    public function lastSubscription()
+    public function getLastSubscription()
     {
         if (! $this->hasSubscriptions()) {
             return;
@@ -108,7 +108,7 @@ trait HasPlans
             return $this->lastUnpaidSubscription();
         }
 
-        $lastSubscription = $this->lastSubscription();
+        $lastSubscription = $this->getLastSubscription();
 
         if ($lastActiveSubscription->is($lastSubscription)) {
             return;
