@@ -19,8 +19,8 @@ return [
     /*
      * Payment methods
      */
-    'payment_methods' => ['stripe'],
+    'payment_methods' => [/*'stripe'*/],
 
-    'stripeTestToken' => env('STRIPE_TEST_TOKEN', 'NO-TOKEN')
+//    'stripeTestToken' => env('STRIPE_TEST_TOKEN', 'NO-TOKEN')
 
 ];

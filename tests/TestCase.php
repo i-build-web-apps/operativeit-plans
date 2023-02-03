@@ -2,8 +2,6 @@
 
 namespace Creatydev\Plans\Test;
 
-use Stripe\Stripe;
-use Stripe\Token as StripeToken;
 use Creatydev\Plans\Models\Plan;
 use Creatydev\Plans\Test\Models\User;
 use Creatydev\Plans\Models\PlanFeature;
@@ -14,7 +12,7 @@ use Creatydev\Plans\Models\PlanSubscriptionUsage;
 
 abstract class TestCase extends Orchestra
 {
-    protected $invalidStripeToken = 'tok_chargeDeclinedInsufficientFunds';
+//    protected $invalidStripeToken = 'tok_chargeDeclinedInsufficientFunds';
 
     public function setUp(): void
     {
@@ -58,29 +56,29 @@ abstract class TestCase extends Orchestra
         file_put_contents(__DIR__.'/database.sqlite', null);
     }
 
-    protected function initiateStripeAPI()
-    {
-        return Stripe::setApiKey(config('plans.stripeTestToken'));
-    }
+//    protected function initiateStripeAPI()
+//    {
+//        return Stripe::setApiKey(config('plans.stripeTestToken'));
+//    }
 
-    protected function getStripeTestToken(): ?int
-    {
-        $this->initiateStripeAPI();
+//    protected function getStripeTestToken(): ?int
+//    {
+//        $this->initiateStripeAPI();
+//
+//        $token = StripeToken::create([
+//            'card' => [
+//                'number' => '4242424242424242',
+//                'exp_month' => 1,
+//                'exp_year' => 2030,
+//                'cvc' => '999',
+//            ],
+//        ]);
+//
+//        return $token->id;
+//    }
 
-        $token = StripeToken::create([
-            'card' => [
-                'number' => '4242424242424242',
-                'exp_month' => 1,
-                'exp_year' => 2030,
-                'cvc' => '999',
-            ],
-        ]);
-
-        return $token->id;
-    }
-
-    protected function getInvalidStripeToken()
-    {
-        return $this->invalidStripeToken;
-    }
+//    protected function getInvalidStripeToken()
+//    {
+//        return $this->invalidStripeToken;
+//    }
 }

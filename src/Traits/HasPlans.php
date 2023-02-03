@@ -481,7 +481,7 @@ trait HasPlans
      * @param string $stripeToken The stripe Token for integrated Stripe Charge feature.
      * @return false|PlanSubscriptionModel
      */
-    public function renewSubscription($stripeToken = null)
+    public function renewSubscription(/*$stripeToken = null*/)
     {
         if (! $this->hasSubscriptions()) {
             return false;
@@ -514,9 +514,9 @@ trait HasPlans
                 return false;
             }
 
-            if ($lastActiveSubscription->payment_method == 'stripe') {
-                return $this->withStripe()->withStripeToken($stripeToken)->subscribeTo($plan, $recurringEachDays);
-            }
+//            if ($lastActiveSubscription->payment_method == 'stripe') {
+//                return $this->withStripe()->withStripeToken($stripeToken)->subscribeTo($plan, $recurringEachDays);
+//            }
         }
 
         return $this->subscribeTo($plan, $recurringEachDays);

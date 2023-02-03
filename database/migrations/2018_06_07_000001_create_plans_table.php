@@ -79,16 +79,16 @@ class CreatePlansTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('stripe_customer', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->integer('model_id');
-            $table->string('model_type');
-
-            $table->string('customer_id');
-
-            $table->timestamps();
-        });
+//        Schema::create('stripe_customer', function (Blueprint $table) {
+//            $table->increments('id');
+//
+//            $table->integer('model_id');
+//            $table->string('model_type');
+//
+//            $table->string('customer_id');
+//
+//            $table->timestamps();
+//        });
     }
 
     /**
